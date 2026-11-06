@@ -12,13 +12,8 @@ export const ISLAND_GROUPS = [
     shortName: "Hoàng Sa",
     // Schematic locator polygon for map interaction, not a cadastral boundary.
     coordinates: [
-      [111.0, 16.0],
-      [111.7, 17.25],
-      [113.25, 17.1],
-      [113.7, 16.2],
-      [113.0, 15.55],
-      [111.55, 15.55],
-      [111.0, 16.0]
+      [111.0, 16.0], [111.7, 17.25], [113.25, 17.1],
+      [113.7, 16.2], [113.0, 15.55], [111.55, 15.55], [111.0, 16.0]
     ]
   },
   {
@@ -27,21 +22,16 @@ export const ISLAND_GROUPS = [
     shortName: "Trường Sa",
     // Schematic locator polygon for map interaction, not a cadastral boundary.
     coordinates: [
-      [109.0, 11.8],
-      [110.0, 12.25],
-      [114.0, 11.8],
-      [117.0, 10.4],
-      [116.2, 7.1],
-      [113.3, 6.0],
-      [110.2, 7.0],
-      [109.0, 9.2],
-      [109.0, 11.8]
+      [109.0, 11.8], [110.0, 12.25], [114.0, 11.8],
+      [117.0, 10.4], [116.2, 7.1], [113.3, 6.0],
+      [110.2, 7.0], [109.0, 9.2], [109.0, 11.8]
     ]
   }
 ];
 
 export function getCountryIso3(properties = {}) {
   const candidates = [
+    properties["ISO3166-1-Alpha-3"],
     properties.ISO3166_1_Alpha_3,
     properties.ISO_A3,
     properties.ADM0_A3,
