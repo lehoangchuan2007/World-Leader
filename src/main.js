@@ -107,7 +107,7 @@ function showToast(message) {
 }
 
 function getIso2(properties = {}) {
-  return properties.ISO_A2 || properties.ISO3166_1_Alpha_2 || properties.iso_a2 || "";
+  return properties["ISO3166-1-Alpha-2"] || properties.ISO_A2 || properties.ISO3166_1_Alpha_2 || properties.iso_a2 || "";
 }
 
 function getCountryStyle(feature) {
