@@ -34,11 +34,11 @@ app.innerHTML = `
       <span class="brand-copy"><strong>WORLD LEADER</strong><small>GLOBAL STRATEGY</small></span>
     </a>
     <div class="resource-strip" id="resource-strip" hidden>
-      <div class="resource-item"><span class="resource-icon money-icon">$</span><span><small>TIỀN</small><strong id="money-value">0 USD</strong></span></div>
-      <div class="resource-item"><span class="resource-icon food-icon">✳</span><span><small>LƯƠNG THỰC</small><strong id="food-value">0 tấn</strong></span></div>
-      <div class="resource-item"><span class="resource-icon oil-icon">◒</span><span><small>DẦU</small><strong id="oil-value">0 thùng</strong></span></div>
-      <div class="resource-item"><span class="resource-icon uranium-icon">◎</span><span><small>URANIUM</small><strong id="uranium-value">0 kg</strong></span></div>
-      <div class="resource-item date-resource"><span class="resource-icon date-icon">▦</span><span><small>THỜI GIAN · X2</small><strong id="date-value">01/01/2026</strong></span></div>
+      <div class="resource-item"><span class="resource-icon money-icon">$</span><span><small>TIỀN</small><strong id="money-value">— USD</strong></span></div>
+      <div class="resource-item"><span class="resource-icon food-icon">✳</span><span><small>LƯƠNG THỰC</small><strong id="food-value">— tấn</strong></span></div>
+      <div class="resource-item"><span class="resource-icon oil-icon">◒</span><span><small>DẦU</small><strong id="oil-value">— thùng</strong></span></div>
+      <div class="resource-item"><span class="resource-icon uranium-icon">◎</span><span><small>URANIUM</small><strong id="uranium-value">— kg</strong></span></div>
+      <div class="resource-item date-resource"><span class="resource-icon date-icon">▦</span><span><small>THỜI GIAN · X2</small><strong id="date-value">DD/MM/YYYY</strong></span></div>
     </div>
     <div class="header-actions">
       <div class="menu-wrap">
