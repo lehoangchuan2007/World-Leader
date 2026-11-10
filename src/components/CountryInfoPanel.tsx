@@ -9,9 +9,11 @@ import {
   CheckCircle2,
   Shield,
   ArrowRight,
+  Landmark,
 } from 'lucide-react';
 import { CountryFlag } from './CountryFlag';
 import { SelectedCountry, PlayerCountry } from '../types/game';
+import { getCountryPoliticalRegime } from '../data/politicalData';
 
 interface CountryInfoPanelProps {
   country: SelectedCountry;
@@ -19,6 +21,7 @@ interface CountryInfoPanelProps {
   isSelectingStartingCountry: boolean;
   onConfirmAsPlayerCountry: (country: SelectedCountry) => void;
   onClose: () => void;
+  onOpenPolitics?: (country: SelectedCountry) => void;
 }
 
 export const CountryInfoPanel: React.FC<CountryInfoPanelProps> = ({
@@ -27,6 +30,7 @@ export const CountryInfoPanel: React.FC<CountryInfoPanelProps> = ({
   isSelectingStartingCountry,
   onConfirmAsPlayerCountry,
   onClose,
+  onOpenPolitics,
 }) => {
   const isPlayer = playerCountry?.id === country.id;
 
@@ -122,6 +126,11 @@ export const CountryInfoPanel: React.FC<CountryInfoPanelProps> = ({
                 {country.name}
               </p>
             )}
+            <div className="flex items-center space-x-1.5 mt-1">
+              <span className="text-[10px] font-mono px-2 py-0.5 rounded bg-amber-500/15 text-amber-300 border border-amber-500/30 font-medium">
+                Thể chế: {getCountryPoliticalRegime(country.id, country.name).regime} (Cố định)
+              </span>
+            </div>
           </div>
         </div>
       </div>
@@ -172,7 +181,19 @@ export const CountryInfoPanel: React.FC<CountryInfoPanelProps> = ({
         </p>
       </div>
 
-      {/* Confirmation Actions */}
+      {/* Actions */}
+      <div className="p-4 pt-0 space-y-2">
+        {onOpenPolitics && (
+          <button
+            type="button"
+            onClick={() => onOpenPolitics(country)}
+            className="w-full flex items-center justify-center space-x-2 py-2 px-3 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-200 hover:text-white border border-slate-700 text-xs font-semibold transition-colors"
+          >
+            <Landmark className="w-3.5 h-3.5 text-amber-400" />
+            <span>Xem bộ máy nhà nước (GĐ2)</span>
+          </button>
+        )}
+
         {isSelectingStartingCountry ? (
           <button
             type="button"
@@ -193,6 +214,7 @@ export const CountryInfoPanel: React.FC<CountryInfoPanelProps> = ({
             <span>Quốc gia độc lập</span>
           </div>
         )}
+      </div>
     </div>
   );
 };

@@ -33,3 +33,5 @@ export interface MapViewport {
   y: number;
   k: number;
 }
+
+export * from './politics';

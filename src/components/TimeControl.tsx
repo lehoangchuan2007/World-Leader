@@ -43,19 +43,19 @@ export const TimeControl: React.FC<TimeControlProps> = ({
 
       {/* Speed Controls: Pause, X1, X2 */}
       <div className="flex items-center space-x-1">
-        {/* Pause Button */}
+        {/* Pause Button - Dùng kí hiệu II (icon Pause), bỏ chữ 'Pause' */}
         <button
           type="button"
           onClick={() => onSpeedChange('pause')}
           title="Tạm dừng thời gian"
-          className={`flex items-center space-x-1 px-2.5 py-1.5 rounded text-xs font-semibold transition-colors ${
+          aria-label="Tạm dừng thời gian"
+          className={`flex items-center justify-center px-2.5 py-1.5 rounded text-xs font-semibold transition-colors ${
             currentSpeed === 'pause'
               ? 'bg-amber-500 text-slate-950 shadow-sm'
               : 'bg-slate-800 text-slate-300 hover:bg-slate-700 hover:text-white'
           }`}
         >
           <Pause className="w-3.5 h-3.5 fill-current" />
-          <span>Pause</span>
         </button>
 
         {/* X1 Button: 1 game day = 2s */}

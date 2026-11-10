@@ -8,6 +8,7 @@ interface MapPageProps {
   onSelectCountry: (country: SelectedCountry | null) => void;
   isSelectingStartingCountry?: boolean;
   onConfirmPlayerCountry?: (country: SelectedCountry) => void;
+  onOpenPolitics?: (country: SelectedCountry) => void;
 }
 
 export const MapPage: React.FC<MapPageProps> = ({
@@ -16,6 +17,7 @@ export const MapPage: React.FC<MapPageProps> = ({
   onSelectCountry,
   isSelectingStartingCountry = false,
   onConfirmPlayerCountry,
+  onOpenPolitics,
 }) => {
   return (
     <div className="relative w-full h-full flex flex-col overflow-hidden">
@@ -25,6 +27,7 @@ export const MapPage: React.FC<MapPageProps> = ({
         onSelectCountry={onSelectCountry}
         isSelectingStartingCountry={isSelectingStartingCountry}
         onConfirmPlayerCountry={onConfirmPlayerCountry}
+        onOpenPolitics={onOpenPolitics}
       />
     </div>
   );

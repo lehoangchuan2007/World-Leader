@@ -22,6 +22,7 @@ interface WorldMapProps {
   onSelectCountry: (country: SelectedCountry | null) => void;
   isSelectingStartingCountry?: boolean;
   onConfirmPlayerCountry?: (country: SelectedCountry) => void;
+  onOpenPolitics?: (country: SelectedCountry) => void;
 }
 
 interface PrecomputedFeature {
@@ -37,6 +38,7 @@ export const WorldMap: React.FC<WorldMapProps> = ({
   onSelectCountry,
   isSelectingStartingCountry = false,
   onConfirmPlayerCountry,
+  onOpenPolitics,
 }) => {
   const containerRef = useRef<HTMLDivElement>(null);
 
@@ -518,6 +520,7 @@ export const WorldMap: React.FC<WorldMapProps> = ({
             onConfirmPlayerCountry?.(country);
           }}
           onClose={() => onSelectCountry(null)}
+          onOpenPolitics={onOpenPolitics}
         />
       )}
     </div>
