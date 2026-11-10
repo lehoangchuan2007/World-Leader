@@ -12,6 +12,7 @@ import {
   ChevronDown,
   RotateCcw,
   AlertTriangle,
+  Factory,
 } from 'lucide-react';
 import { ActivePage } from '../types/game';
 
@@ -43,6 +44,12 @@ export const MainMenu: React.FC<MainMenuProps> = ({
       name: 'Chính trị',
       phaseNote: 'GĐ2',
       icon: Landmark,
+    },
+    {
+      id: 'factories',
+      name: 'Nhà máy',
+      phaseNote: 'GĐ4',
+      icon: Factory,
     },
     {
       id: 'economy',

@@ -14,6 +14,7 @@ export type TimeSpeed = 'pause' | 'x1' | 'x2';
 export type ActivePage =
   | 'map'
   | 'politics'
+  | 'factories'
   | 'economy'
   | 'military'
   | 'diplomacy'
@@ -35,3 +36,4 @@ export interface MapViewport {
 }
 
 export * from './politics';
+export * from './factory';
