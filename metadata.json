@@ -1,0 +1,6 @@
+{
+  "name": "WORLD LEADER - Giai đoạn 1",
+  "description": "Trò chơi chiến lược địa chính trị WORLD LEADER - Giai đoạn 1: Bản đồ thế giới và giao diện chính.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
