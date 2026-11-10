@@ -15,14 +15,17 @@ import {
   zoomToPoint,
 } from '../systems/mapInteraction';
 import { MapViewport, SelectedCountry, PlayerCountry } from '../types/game';
+import { CountryEconomy } from '../types/economy';
 
 interface WorldMapProps {
   playerCountry: PlayerCountry | null;
   selectedCountry: SelectedCountry | null;
+  selectedCountryEconomy?: CountryEconomy | null;
   onSelectCountry: (country: SelectedCountry | null) => void;
   isSelectingStartingCountry?: boolean;
   onConfirmPlayerCountry?: (country: SelectedCountry) => void;
   onOpenPolitics?: (country: SelectedCountry) => void;
+  onOpenEconomy?: (country: SelectedCountry) => void;
 }
 
 interface PrecomputedFeature {
@@ -35,10 +38,12 @@ interface PrecomputedFeature {
 export const WorldMap: React.FC<WorldMapProps> = ({
   playerCountry,
   selectedCountry,
+  selectedCountryEconomy,
   onSelectCountry,
   isSelectingStartingCountry = false,
   onConfirmPlayerCountry,
   onOpenPolitics,
+  onOpenEconomy,
 }) => {
   const containerRef = useRef<HTMLDivElement>(null);
 
@@ -515,12 +520,14 @@ export const WorldMap: React.FC<WorldMapProps> = ({
         <CountryInfoPanel
           country={selectedCountry}
           playerCountry={playerCountry}
+          economy={selectedCountryEconomy}
           isSelectingStartingCountry={isSelectingStartingCountry}
           onConfirmAsPlayerCountry={(country) => {
             onConfirmPlayerCountry?.(country);
           }}
           onClose={() => onSelectCountry(null)}
           onOpenPolitics={onOpenPolitics}
+          onOpenEconomy={onOpenEconomy}
         />
       )}
     </div>

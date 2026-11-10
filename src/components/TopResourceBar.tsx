@@ -2,20 +2,36 @@ import React from 'react';
 import { DollarSign, Wheat, Fuel, Atom, Flag } from 'lucide-react';
 import { CountryFlag } from './CountryFlag';
 import { PlayerCountry } from '../types/game';
+import { CountryEconomy } from '../types/economy';
 
 interface TopResourceBarProps {
   playerCountry?: PlayerCountry | null;
+  playerEconomy?: CountryEconomy | null;
 }
 
 export const TopResourceBar: React.FC<TopResourceBarProps> = ({
   playerCountry,
+  playerEconomy,
 }) => {
+  const moneyValue = playerEconomy
+    ? playerEconomy.treasury >= 1e9
+      ? `$${(playerEconomy.treasury / 1e9).toFixed(2)}B`
+      : playerEconomy.treasury >= 1e6
+        ? `$${(playerEconomy.treasury / 1e6).toFixed(1)}M`
+        : `$${Math.round(playerEconomy.treasury).toLocaleString('vi-VN')}`
+    : '-';
+
+  const moneyTooltip = playerEconomy
+    ? `Ngân sách quốc gia: $${Math.round(playerEconomy.treasury).toLocaleString('vi-VN')} USD (Thuế ròng: ${playerEconomy.dailyTaxNet >= 0 ? '+' : ''}$${Math.round(playerEconomy.dailyTaxNet).toLocaleString('vi-VN')}/ngày)`
+    : 'Tiền (USD) - Chưa kích hoạt';
+
   const resources = [
     {
       id: 'money',
       name: 'Tiền',
       unit: 'USD',
-      value: '-',
+      value: moneyValue,
+      tooltip: moneyTooltip,
       icon: DollarSign,
       color: 'text-amber-400',
       bgColor: 'bg-amber-400/10 border-amber-400/20',
@@ -25,6 +41,7 @@ export const TopResourceBar: React.FC<TopResourceBarProps> = ({
       name: 'Lương thực',
       unit: 'tấn',
       value: '-',
+      tooltip: 'Lương thực (tấn) - Chưa triển khai ở Giai đoạn 3',
       icon: Wheat,
       color: 'text-emerald-400',
       bgColor: 'bg-emerald-400/10 border-emerald-400/20',
@@ -34,6 +51,7 @@ export const TopResourceBar: React.FC<TopResourceBarProps> = ({
       name: 'Dầu',
       unit: 'thùng',
       value: '-',
+      tooltip: 'Dầu mỏ (thùng) - Chưa triển khai ở Giai đoạn 3',
       icon: Fuel,
       color: 'text-sky-400',
       bgColor: 'bg-sky-400/10 border-sky-400/20',
@@ -43,6 +61,7 @@ export const TopResourceBar: React.FC<TopResourceBarProps> = ({
       name: 'Uranium',
       unit: 'kg',
       value: '-',
+      tooltip: 'Uranium (kg) - Chưa triển khai ở Giai đoạn 3',
       icon: Atom,
       color: 'text-purple-400',
       bgColor: 'bg-purple-400/10 border-purple-400/20',
@@ -58,7 +77,7 @@ export const TopResourceBar: React.FC<TopResourceBarProps> = ({
             WORLD LEADER
           </span>
           <span className="text-xs px-1.5 py-0.5 rounded bg-slate-800 text-slate-400 font-mono font-medium border border-slate-700/60">
-            GĐ1
+            GĐ3
           </span>
         </div>
 
@@ -87,7 +106,7 @@ export const TopResourceBar: React.FC<TopResourceBarProps> = ({
         )}
       </div>
 
-      {/* 4 Required Phase 1 Resources - all strictly displaying "-" */}
+      {/* 4 Resources - Money activated for G3 */}
       <div className="flex items-center space-x-2 sm:space-x-4">
         {resources.map((item) => {
           const Icon = item.icon;
@@ -95,7 +114,7 @@ export const TopResourceBar: React.FC<TopResourceBarProps> = ({
             <div
               key={item.id}
               className={`flex items-center space-x-2 px-3 py-1.5 rounded-md border text-xs sm:text-sm font-medium ${item.bgColor}`}
-              title={`${item.name} (${item.unit}) - Chưa triển khai ở Giai đoạn 1`}
+              title={item.tooltip}
             >
               <Icon className={`w-4 h-4 shrink-0 ${item.color}`} />
               <div className="flex items-baseline space-x-1">

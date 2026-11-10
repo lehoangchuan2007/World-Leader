@@ -10,10 +10,12 @@ import {
   Shield,
   ArrowRight,
   Landmark,
+  Coins,
 } from 'lucide-react';
 import { CountryFlag } from './CountryFlag';
 import { SelectedCountry, PlayerCountry } from '../types/game';
 import { getCountryPoliticalRegime } from '../data/politicalData';
+import { CountryEconomy } from '../types/economy';
 
 interface CountryInfoPanelProps {
   country: SelectedCountry;
@@ -22,6 +24,8 @@ interface CountryInfoPanelProps {
   onConfirmAsPlayerCountry: (country: SelectedCountry) => void;
   onClose: () => void;
   onOpenPolitics?: (country: SelectedCountry) => void;
+  onOpenEconomy?: (country: SelectedCountry) => void;
+  economy?: CountryEconomy | null;
 }
 
 export const CountryInfoPanel: React.FC<CountryInfoPanelProps> = ({
@@ -31,26 +35,34 @@ export const CountryInfoPanel: React.FC<CountryInfoPanelProps> = ({
   onConfirmAsPlayerCountry,
   onClose,
   onOpenPolitics,
+  onOpenEconomy,
+  economy,
 }) => {
   const isPlayer = playerCountry?.id === country.id;
 
-  // Basic stats required: Cờ, Tên, Dân số, Tiền, Lương thực, Dầu, Uranium
-  // Phase 1 scope: any data not yet implemented displays '-'
+  // Basic stats: Cờ, Tên, Dân số (G3), Tiền (G3), Lương thực (G4/G9), Dầu (G4/G9), Uranium (G4/G9)
+  const populationFormatted = economy
+    ? Math.round(economy.population).toLocaleString('vi-VN')
+    : '-';
+  const moneyFormatted = economy
+    ? `$${Math.round(economy.treasury).toLocaleString('vi-VN')}`
+    : '-';
+
   const stats = [
     {
       id: 'population',
-      label: 'Dân số',
-      value: '-',
-      unit: '',
+      label: 'Dân số (Hiện đại)',
+      value: populationFormatted,
+      unit: economy ? 'người' : '',
       icon: Users,
       color: 'text-indigo-400',
       bg: 'bg-indigo-500/10 border-indigo-500/20',
     },
     {
       id: 'money',
-      label: 'Tiền',
-      value: '-',
-      unit: 'USD',
+      label: 'Ngân sách quốc gia',
+      value: moneyFormatted,
+      unit: economy ? 'USD' : '',
       icon: DollarSign,
       color: 'text-amber-400',
       bg: 'bg-amber-500/10 border-amber-500/20',
@@ -191,6 +203,17 @@ export const CountryInfoPanel: React.FC<CountryInfoPanelProps> = ({
           >
             <Landmark className="w-3.5 h-3.5 text-amber-400" />
             <span>Xem bộ máy nhà nước (GĐ2)</span>
+          </button>
+        )}
+
+        {onOpenEconomy && (
+          <button
+            type="button"
+            onClick={() => onOpenEconomy(country)}
+            className="w-full flex items-center justify-center space-x-2 py-2 px-3 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-200 hover:text-white border border-slate-700 text-xs font-semibold transition-colors"
+          >
+            <Coins className="w-3.5 h-3.5 text-emerald-400" />
+            <span>Xem kinh tế & ngân sách (GĐ3)</span>
           </button>
         )}
 

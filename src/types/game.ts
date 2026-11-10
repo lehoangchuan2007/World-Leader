@@ -37,3 +37,4 @@ export interface MapViewport {
 
 export * from './politics';
 export * from './factory';
+export * from './economy';
